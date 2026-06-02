@@ -357,12 +357,114 @@ function daysAgo(d) {
 }
 
 const SEED = [
-  { id: "CIV-0001", issueType: "pothole", severity: "high", urgencyScore: 82, estimatedAffectedPopulation: 4200, department: "Road Maintenance", summary: "Large pothole on a two-lane road creating a traffic hazard.", confidence: 0.91, status: "In Progress", timestamp: daysAgo(2), photo: null, mapX: 22, mapY: 38, byCitizen: true },
-  { id: "CIV-0002", issueType: "garbage", severity: "medium", urgencyScore: 54, estimatedAffectedPopulation: 1500, department: "Sanitation", summary: "Overflowing garbage bins near a residential block.", confidence: 0.86, status: "Acknowledged", timestamp: daysAgo(5), photo: null, mapX: 61, mapY: 28, byCitizen: true },
-  { id: "CIV-0003", issueType: "water_leakage", severity: "critical", urgencyScore: 95, estimatedAffectedPopulation: 8000, department: "Water Board", summary: "Burst water main flooding the street intersection.", confidence: 0.94, status: "Submitted", timestamp: daysAgo(1), photo: null, mapX: 45, mapY: 64, byCitizen: true },
-  { id: "CIV-0004", issueType: "damaged_streetlight", severity: "low", urgencyScore: 28, estimatedAffectedPopulation: 600, department: "Electrical", summary: "A single streetlight not functioning at night.", confidence: 0.88, status: "Resolved", timestamp: daysAgo(30), photo: null, mapX: 79, mapY: 52, byCitizen: true },
-  { id: "CIV-0005", issueType: "road_damage", severity: "high", urgencyScore: 76, estimatedAffectedPopulation: 3100, department: "Public Works", summary: "Cracked and broken road surface over a long stretch.", confidence: 0.83, status: "Acknowledged", timestamp: daysAgo(12), photo: null, mapX: 33, mapY: 76, byCitizen: true },
-  { id: "CIV-0006", issueType: "drainage_issue", severity: "medium", urgencyScore: 60, estimatedAffectedPopulation: 2200, department: "Public Works", summary: "Clogged storm drain causing standing water.", confidence: 0.8, status: "Submitted", timestamp: daysAgo(70), photo: null, mapX: 68, mapY: 72, byCitizen: true },
+  {
+    id: "CIV-0001",
+    issueType: "pothole",
+    severity: "high",
+    urgencyScore: 82,
+    estimatedAffectedPopulation: 4200,
+    department: "Road Maintenance",
+    summary: "Large pothole on a two-lane road creating a traffic hazard.",
+    confidence: 0.91,
+    status: "In Progress",
+    timestamp: daysAgo(2),
+    photo: null,
+    mapX: 22,
+    mapY: 38,
+    lat: 28.6139,
+    lng: 77.2090,
+    byCitizen: true
+  },
+  {
+    id: "CIV-0002",
+    issueType: "garbage",
+    severity: "medium",
+    urgencyScore: 54,
+    estimatedAffectedPopulation: 1500,
+    department: "Sanitation",
+    summary: "Overflowing garbage bins near a residential block.",
+    confidence: 0.86,
+    status: "Acknowledged",
+    timestamp: daysAgo(5),
+    photo: null,
+    mapX: 61,
+    mapY: 28,
+    lat: 19.0760,
+    lng: 72.8777,
+    byCitizen: true
+  },
+  {
+    id: "CIV-0003",
+    issueType: "water_leakage",
+    severity: "critical",
+    urgencyScore: 95,
+    estimatedAffectedPopulation: 8000,
+    department: "Water Board",
+    summary: "Burst water main flooding the street intersection.",
+    confidence: 0.94,
+    status: "Submitted",
+    timestamp: daysAgo(1),
+    photo: null,
+    mapX: 45,
+    mapY: 64,
+    lat: 12.9716,
+    lng: 77.5946,
+    byCitizen: true
+  },
+  {
+    id: "CIV-0004",
+    issueType: "damaged_streetlight",
+    severity: "low",
+    urgencyScore: 28,
+    estimatedAffectedPopulation: 600,
+    department: "Electrical",
+    summary: "A single streetlight not functioning at night.",
+    confidence: 0.88,
+    status: "Resolved",
+    timestamp: daysAgo(30),
+    photo: null,
+    mapX: 79,
+    mapY: 52,
+    lat: 13.0827,
+    lng: 80.2707,
+    byCitizen: true
+  },
+  {
+    id: "CIV-0005",
+    issueType: "road_damage",
+    severity: "high",
+    urgencyScore: 76,
+    estimatedAffectedPopulation: 3100,
+    department: "Public Works",
+    summary: "Cracked and broken road surface over a long stretch.",
+    confidence: 0.83,
+    status: "Acknowledged",
+    timestamp: daysAgo(12),
+    photo: null,
+    mapX: 33,
+    mapY: 76,
+    lat: 17.3850,
+    lng: 78.4867,
+    byCitizen: true
+  },
+  {
+    id: "CIV-0006",
+    issueType: "drainage_issue",
+    severity: "medium",
+    urgencyScore: 60,
+    estimatedAffectedPopulation: 2200,
+    department: "Public Works",
+    summary: "Clogged storm drain causing standing water.",
+    confidence: 0.8,
+    status: "Submitted",
+    timestamp: daysAgo(70),
+    photo: null,
+    mapX: 68,
+    mapY: 72,
+    lat: 22.5726,
+    lng: 88.3639,
+    byCitizen: true
+  }
 ];
 
 const ANALYSIS_INSTRUCTION =
@@ -1484,7 +1586,7 @@ function AuthorityDash({ t, complaints, advance, highlightId, sosRecords, goAler
             <thead>
               <tr>
                 <th>{t.colId}</th><th></th><th>{t.colType}</th><th>{t.colUrg}</th>
-                <th>{t.fSev}</th><th>{t.slaStatus}</th><th>{t.colDept}</th><th>{t.colStatus}</th><th>{t.colAction}</th>
+                <th>{t.fSev}</th><th>{t.slaStatus}</th><th>{t.colDept}</th><th>{t.colStatus}</th><th>Location</th><th>{t.colAction}</th>
               </tr>
             </thead>
             <tbody>
@@ -1502,6 +1604,9 @@ function AuthorityDash({ t, complaints, advance, highlightId, sosRecords, goAler
                     <td><SlaBadge sla={sla} t={t} /></td>
                     <td className="ce-nowrap">{t.dept[c.department]}</td>
                     <td><StatusBadge status={c.status} t={t} /></td>
+                    <td>
+                      {c.lat?.toFixed(4)}, {c.lng?.toFixed(4)}
+                    </td>
                     <td>
                       <button className="ce-btn ce-btn-ghost ce-btn-xs" disabled={c.status === "Resolved"}
                         onClick={() => advance(c.id)}>
@@ -1551,6 +1656,12 @@ function ComplaintCard({ c, t, advance, highlight, sla }) {
         </div>
       </div>
       <p className="ce-complaint-sum">{c.summary}</p>
+      <div className="ce-location">
+        <MapPin size={14} />
+        <span>
+        {c.lat?.toFixed(5)}, {c.lng?.toFixed(5)}
+        </span>
+      </div>
       {sla && (
         <div className="ce-complaint-sla">
           <SlaBadge sla={sla} t={t} />
