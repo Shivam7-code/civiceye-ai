@@ -1,5 +1,5 @@
 # Team Members:
-# Sikha Rout , Shreya , Maanya N S , Shivam Raj Patel
+## Sikha Rout , Shreya , Maanya N S , Shivam Raj Patel
 
 # Setup Instructions
 
